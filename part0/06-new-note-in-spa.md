@@ -31,7 +31,7 @@ sequenceDiagram
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
     activate server
-    server-->>browser: Document
+    server-->>browser: Document (JSON)
     deactivate server
     
     Note right of browser: The browser sends the data represented in JSON format with the header application/json to parse the data
