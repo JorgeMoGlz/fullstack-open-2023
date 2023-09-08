@@ -22,10 +22,15 @@ const Content = (props) => {
 }
 
 const Total = (props) => {
+  console.log(props.totalParts[0].exercises)
   return (
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
     <p>
-      {props.title} {props.exercises.reduce((partialSum, totalExercise) => partialSum+totalExercise, 0)}
+      Number of exercises {[
+        props.totalParts[0].exercises,
+        props.totalParts[1].exercises,
+        props.totalParts[2].exercises,
+        ].reduce((partialSum, totalExercise) => partialSum+totalExercise, 0)}
     </p>
   )
 }
@@ -51,7 +56,7 @@ export const App = () => {
     <div>
       <Header course={course} />
       <Content parts={parts} />
-      <Total title='Number of exercises' exercises={[parts[0].exercises, parts[1].exercises, parts[2].exercises]} />
+      <Total totalParts={parts} />
     </div>
   )
 }
