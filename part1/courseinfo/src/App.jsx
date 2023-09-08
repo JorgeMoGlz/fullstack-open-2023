@@ -1,6 +1,6 @@
-const Header = ( props ) => {
+const Header = ( {header} ) => {
   return (
-    <h1> {props.course} </h1>
+    <h1> {header.name} </h1>
   )
 }
 
@@ -10,53 +10,54 @@ const Part = (props) => {
   )
 }
 
-const Content = (props) => {
-  console.log(props.parts)
+const Content = ({content}) => {
+
   return (
     <div>
-      <Part name={props.parts[0].name} exercises={props.parts[0].exercises} />
-      <Part name={props.parts[1].name} exercises={props.parts[1].exercises} />
-      <Part name={props.parts[2].name} exercises={props.parts[2].exercises} />
+      <Part name={content.parts[0].name} exercises={content.parts[0].exercises} />
+      <Part name={content.parts[1].name} exercises={content.parts[1].exercises} />
+      <Part name={content.parts[2].name} exercises={content.parts[2].exercises} />
     </div>
   )
 }
 
-const Total = (props) => {
-  console.log(props.totalParts[0].exercises)
+const Total = ({total}) => {
   return (
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
     <p>
       Number of exercises {[
-        props.totalParts[0].exercises,
-        props.totalParts[1].exercises,
-        props.totalParts[2].exercises,
-        ].reduce((partialSum, totalExercise) => partialSum+totalExercise, 0)}
+        total.parts[0].exercises,
+        total.parts[1].exercises,
+        total.parts[2].exercises,
+      ].reduce((partialSum, totalExercise) => partialSum+totalExercise, 0)}
     </p>
   )
 }
 
 export const App = () => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
   return (
     <div>
-      <Header course={course} />
-      <Content parts={parts} />
-      <Total totalParts={parts} />
+      <Header header={course} />
+      <Content content={course} />
+      <Total total={course} />
     </div>
   )
 }
