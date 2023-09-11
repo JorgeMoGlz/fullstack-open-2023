@@ -7,21 +7,33 @@ const Button = ({ handleClick, text }) => {
 }
 
 const Statistics = ({good, neutral, bad, total, score}) => {
+  
   return (
-    <>
+    <div>
       <h3>Statistics</h3>
 
       <p>good: {good}</p>
       <p>neutral: {neutral}</p>
       <p>bad: {bad}</p>
       <p>all: {total}</p>
+
+      {
+        (total===0 
+          ? <p>No feedback given</p> 
+          : (
+          <>
+            <p>average: {(score/total).toFixed(3)}</p>
+            <p>positive: {(good/total*100).toFixed(3)} %</p>
+          </>
+          )
+        )
+      }
       
-      <p>average: {(!score/total) ? '0' : (score/total).toFixed(3)}</p>
-      <p>positive: {(!good/total*100) ? '0' : (good/total*100).toFixed(3)} %</p>
-    </>
+      {/* <p>average: {(!score/total) ? '0' : (score/total).toFixed(3)}</p>
+      <p>positive: {(!good/total*100) ? '0' : (good/total*100).toFixed(3)} %</p> */}
+    </div>
 
   )
-
 }
 
 export const App = () => {
@@ -70,16 +82,6 @@ export const App = () => {
         bad={bad}
         total={total}
         score={score} />
-{/* 
-      <h3>statistics</h3>
-      <p>good: {good}</p>
-      <p>neutral: {neutral}</p>
-      <p>bad: {bad}</p>
-      <p>all: {total}</p>
-      
-
-      <p>average: {(!score/total) ? '0' : (score/total).toFixed(3)}</p>
-      <p>positive: {(!good/total*100) ? '0' : (good/total*100).toFixed(3)} %</p> */}
 
     </div>
   )
