@@ -1,21 +1,41 @@
 import { useState } from 'react'
 import './App.css'
 
+const Display = ({ counter }) => (
+    <div>{counter}</div>
+)
+
+const Button = ({ handleClick, text }) => (
+    <button onClick={handleClick}>
+      {text}
+    </button>
+)
 
 export const App = (props) => {
   
-  const [ counter, setCounter ] = useState(2)
+  const [ counter, setCounter ] = useState(0)
+  console.log('rendering with counter value', counter)
   
-  setTimeout(
-    () => setCounter(counter + 1),
-    1000
-  )
+  const increaseByOne = () => {
+    console.log('increasing, value before', counter)
+    setCounter(counter+1)
+  }
+  const decreaseByOne = () => {
+    console.log('decreasing, value before', counter)
+    setCounter(counter-1)
+  }
+  const setToZero = () => {
+    console.log('resetting, value before', counter)
+    setCounter(0)
+  }
   
-  console.log('rendering...', counter)
 
   return (
     <>
-      <div>{counter}</div>
+      <Display counter={counter}/>
+      <Button handleClick={increaseByOne} text='plus' />
+      <Button handleClick={setToZero} text='zero' />
+      <Button handleClick={decreaseByOne} text='minus' />
     </>
   )
 }
