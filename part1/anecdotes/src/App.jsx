@@ -27,18 +27,38 @@ export const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
-  
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(
+    {
+      0: 0, 
+      1: 0, 
+      2: 0, 
+      3: 0, 
+      4: 0, 
+      5: 0, 
+      6: 0, 
+      7: 0, 
+      8: 0, 
+    }
+  )
   
   const handleAnecdoteClick = () => {
     setSelected(getRandomInt(0, anecdotes.length))
   }
-
-  // selected = getRandomInt(0, anecdotes.length)
+  
+  const handleVotes = () => {
+    const copy = { ...votes }
+    copy[selected] += 1
+    
+    setVotes(copy)
+    console.log(copy)
+  }
 
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
+      <p>{ anecdotes[selected] }</p>
+      <p>has { votes[selected] }</p>
+      <Button text="vote"          handleClick={handleVotes} />
       <Button text="next anecdote" handleClick={handleAnecdoteClick}/>
     </div>
 
