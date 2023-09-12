@@ -10,6 +10,24 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
 }
 
+const BestAnecdote = ({votes, anecdotes}) => {
+  
+  var bestVoteKey, bestVote = -1;
+  for (const [index, element] of Object.values(votes).entries()) {
+    if (element>bestVote) {
+      bestVote = element
+      bestVoteKey = index
+    }
+  }
+
+  return (
+    <>
+      <h3>Anecdote with most votes</h3>
+      <p>{anecdotes[bestVoteKey]}</p>
+    </>
+  )
+}
+
 const Button = ({text, handleClick}) => (
   <button onClick={handleClick}>{text}</button>
 )
@@ -51,7 +69,7 @@ export const App = () => {
     copy[selected] += 1
     
     setVotes(copy)
-    console.log(copy)
+    // console.log(copy)
   }
 
   return (
@@ -60,7 +78,8 @@ export const App = () => {
       <p>has { votes[selected] }</p>
       <Button text="vote"          handleClick={handleVotes} />
       <Button text="next anecdote" handleClick={handleAnecdoteClick}/>
-    </div>
 
+      <BestAnecdote votes={votes} anecdotes={anecdotes}/>
+    </div>
   )
 }
