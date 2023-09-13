@@ -39,6 +39,7 @@ const Course = ({course}) => {
     <div>
       <Header header={course}/>
       <Content content={course}/>
+      <Total total={course}/>
     </div>
   )
 } 
