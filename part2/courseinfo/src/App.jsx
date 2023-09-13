@@ -23,6 +23,7 @@ const Content = ({content}) => {
 
 const Total = ({total}) => {
   return (
+    // already had it added
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
     <p>
       Number of exercises {[
