@@ -14,8 +14,20 @@ export const App = () => {
       name: newName
     }
 
-    setPersons(persons.concat(personObject))
-    setNewName('')
+    var personExist = false
+
+    for(var p=0; p<=persons.length; p++) {
+      if (JSON.stringify(personObject)===JSON.stringify(persons[p])) {
+        personExist = true
+        alert(`${personObject.name} is already added to phonebook`)
+        setNewName('')
+      }
+    }
+
+    if(!personExist) {
+      setPersons(persons.concat(personObject))
+      setNewName('')
+    }
   }
 
   const handleNameChange = (event) => {
@@ -35,10 +47,13 @@ export const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      {
-        persons.map(person =>
-          <Person key={ person.name } person={ person }/>)
-      }
+      <div>
+        debug: 
+          {
+            persons.map(person =>
+              <Person key={ person.name } person={ person }/>)
+          }
+      </div>
     </div>
   )
 }
